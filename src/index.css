@@ -1,0 +1,30 @@
+@import url("./fonts/fonts.css");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+ }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* setting this to border-box as the css default is content-box */
+}
+
+:root {
+  --primary-colour: #FFDBFE;
+  --black: #000000;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background-color: var(--primary-colour);
+
+  font-family: 'Roboto';
+  font-weight: 400;
+  text-align: left;
+  font-size: 1rem;
+  color: var(--black);
+}

@@ -1,0 +1,5 @@
+@font-face {
+    font-family: 'petitcochon';
+    src: url('./petitcochon/petitcochon.otf') format('opentype');
+    font-weight: bold;
+}
