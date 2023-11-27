@@ -17,14 +17,10 @@ app.post('/translate-and-search', async (req, res) => {
     const modifiedSearchTerm = searchTerm + " in Japan";
     console.log("modifiedSearchTerm: " + modifiedSearchTerm);
     try {
-      // Translate the search term
       const translatedTerm = await translateText(modifiedSearchTerm, targetLanguage);
-  
-      // Perform the search using the translated term
       const searchResults = await performTextSearch(translatedTerm);
-  
-      // Send back the search results
-      res.json({ results: searchResults });
+      res.json({ results: searchResults }); //res.redirect(`/search-results?results=${encodeURIComponent(JSON.stringify(searchResults))}`);
+
     } catch (error) {
       console.error('Error performing translation and search:', error);
       res.status(500).json({ error: 'Internal server error' });
