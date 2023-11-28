@@ -19,7 +19,7 @@ app.post('/translate-and-search', async (req, res) => {
     try {
       const translatedTerm = await translateText(modifiedSearchTerm, targetLanguage);
       const searchResults = await performTextSearch(translatedTerm);
-      res.json({ results: searchResults }); //res.redirect(`/search-results?results=${encodeURIComponent(JSON.stringify(searchResults))}`);
+      res.json({ results: searchResults }); 
 
     } catch (error) {
       console.error('Error performing translation and search:', error);
