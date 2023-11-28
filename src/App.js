@@ -70,47 +70,50 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-      <p className="sticky">Rekki</p>
+        <p className="sticky">Rekki</p>
 
-      {
-        !formSubmitted ? (
-          <>
-            <div className="content">
-              <p>Google like a Japanese, without using Japanese</p>
-              <form onSubmit={handleSearch}>
-                <div className="search-bar">
-                  <input
-                    type="text"
-                    placeholder="Try 'katsu in tokyo'"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                  <button type="submit" className="submit-btn">
-                    <SearchIcon className="searchIcon" />
-                    {/* <img src={searchIcon} className="searchIcon" /> */}
-                  </button>
-                </div>
-              </form>
-            </div>
+        {
+          !formSubmitted ? (
             <>
-              {/* <img src={bear} className="bear" /> */}
-              <Bear className="bear" />
-                
+              <div className="content">
+                <p>Google like a Japanese, without using Japanese</p>
+                <form onSubmit={handleSearch}>
+                  <div className="search-bar">
+                    <input
+                      type="text"
+                      placeholder="Try 'katsu in tokyo'"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <button type="submit" className="submit-btn">
+                      <SearchIcon className="searchIcon" />
+                      {/* <img src={searchIcon} className="searchIcon" /> */}
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <>
+                {/* <img src={bear} className="bear" /> */}
+                <Bear className="bear" />
+              </>
             </>
-          </>
-        ) : (
-          <div className="cards">
-            {console.log(fetchedData)}
-            {renderBusinessCards()}
-          </div>
-        )
-        
-        // (
-        //   fetchedData && (
-        //     <pre>{JSON.stringify(fetchedData, null, 2)}</pre>
-        //   )
-        // )
-      }
+          ) : (
+            <>
+              <p>Results for</p>
+              <div className="searchTerm">{searchTerm}</div>
+              <div className="cards">
+                {console.log(fetchedData)}
+                {renderBusinessCards()}
+              </div>
+            </>
+          )
+
+          // (
+          //   fetchedData && (
+          //     <pre>{JSON.stringify(fetchedData, null, 2)}</pre>
+          //   )
+          // )
+        }
       </div>
     </div>
   );

@@ -93,6 +93,16 @@ p {
   top: 0;
   width: 100%;
   z-index: 1000; /* Set a higher z-index to ensure it appears above other elements */
+  font-family: 'petitcochon';
+  font-size: 2rem;
+}
+
+.searchTerm {
+  padding-top:3rem;
+  position: fixed;
+  top: 10;
+  width: 100%;
+  z-index: 1000; /* Set a higher z-index to ensure it appears above other elements */
 }
 
 .content {
@@ -100,7 +110,9 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 50rem; 
+  padding-top: 35rem; 
+  font-size: 1.2rem;
+  gap: 1rem;
 }
 .container {
   display: flex;
