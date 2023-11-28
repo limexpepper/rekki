@@ -114,6 +114,7 @@ p {
   font-size: 1.2rem;
   gap: 1rem;
 }
+
 .container {
   display: flex;
   flex-direction: column;

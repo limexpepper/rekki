@@ -33,7 +33,7 @@ function App() {
       }
       const data = await response.json();
       console.log("Data from backend:", data);
-      return data;
+      return data.results;
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -50,21 +50,17 @@ function App() {
   };
 
   const renderBusinessCards = () => {
-    return <div className="card">No business data available</div>;
-    // const array = Object.values(fetchedData);
-    // if (fetchedData && Array.isArray(array)){
-    //     let dataDisplay = array.map((object) => {
-    //       const { name } = object;
-    //       return (
-    //         <div className="card">
-    //          <h3>${name}</h3>
-
-    //       </div>
-    //       )
-    //     })
-    // } else {
-    //   return <div className="card">No business data available</div>;
-    // }
+    if (fetchedData && Object.keys(fetchedData).length > 0) {
+      const array = Object.values(fetchedData);
+      const dataDisplay = array.map((object) => (
+        <div className="card">
+          <h3>{object.name}</h3>
+        </div>
+      ));
+      return <div>{dataDisplay}</div>;
+    } else {
+      return <div className="card">No business data available</div>;
+    }
   };
 
   return (
