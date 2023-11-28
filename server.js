@@ -14,12 +14,12 @@ app.use(express.static('public'));
 
 app.post('/translate-and-search', async (req, res) => {
     const { searchTerm, targetLanguage } = req.body;
-    const modifiedSearchTerm = searchTerm + " in Japan";
+    const modifiedSearchTerm = searchTerm + " in Tokyo";
     console.log("modifiedSearchTerm: " + modifiedSearchTerm);
     try {
       const translatedTerm = await translateText(modifiedSearchTerm, targetLanguage);
       const searchResults = await performTextSearch(translatedTerm);
-      res.json({ results: searchResults }); 
+      res.json({ results: searchResults, cooks: translatedTerm }); 
 
     } catch (error) {
       console.error('Error performing translation and search:', error);

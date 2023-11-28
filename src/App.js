@@ -1,15 +1,15 @@
 import React, { useState, useRef } from "react";
 import "./App.css";
-// import bear from "./pinkbear.jpg";
-// import searchIcon from "./search.png";
 import { ReactComponent as SearchIcon } from "./search.svg";
 import { ReactComponent as Bear } from "./bear.svg";
+import { ReactComponent as Katsu } from "./katsu.svg";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [fetchedData, setFetchedData] = useState([]);
-  const [formSubmitted, setFormSubmitted] = useState(false); // State to track form submission
-  //const inputRef = useRef(null);
+  const [formSubmitted, setFormSubmitted] = useState(false); 
+  const [translatedTerm, setTranslatedTerm] = useState("oh what even");
+
 
   const fetchData = async (searchTerm) => {
     console.log("Fetching data");
@@ -23,7 +23,7 @@ function App() {
           },
           body: JSON.stringify({
             searchTerm: searchTerm,
-            targetLanguage: "ja", // Replace with your desired target language code
+            targetLanguage: "ja", 
           }),
         }
       );
@@ -33,6 +33,9 @@ function App() {
       }
       const data = await response.json();
       console.log("Data from backend:", data);
+      setTranslatedTerm(data.cooks);
+      console.log("data from api: " + data)
+      console.log("translated term: " + data.cooks);
       return data.results;
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -46,32 +49,41 @@ function App() {
     const data = await fetchData(searchTerm);
     console.log("data in handle search: " + data);
     setFetchedData(data);
-    setSearchTerm("");
+    //setSearchTerm("");
   };
 
   const renderBusinessCards = () => {
     if (fetchedData && Object.keys(fetchedData).length > 0) {
       const array = Object.values(fetchedData);
-      const dataDisplay = array.map((object) => (
+      return array.map((object) => (
         <div className="card">
-          <h3>{object.name}</h3>
+          <Katsu className="katsu" />
+          <div className="tired">
+          <h4>{object.name}</h4>
+          <p className="lvl2">{object.rating} stars ({object.user_ratings_total})</p>
+          <p className="lvl3">{object.formatted_address}</p>
+          </div>
         </div>
       ));
-      return <div>{dataDisplay}</div>;
     } else {
-      return <div className="card">No business data available</div>;
+      return (
+        <>
+          <div className="loading"></div> 
+          <div className="loading"></div>
+          <div className="loading"></div>
+        </>
+      );
     }
   };
 
   return (
     <div className="App">
-      <div className="container">
-        <p className="sticky">Rekki</p>
-
+        
         {
           !formSubmitted ? (
             <>
-              <div className="content">
+            <p className="rekki">Rekki</p>
+              <div className="homePage">
                 <p>Google like a Japanese, without using Japanese</p>
                 <form onSubmit={handleSearch}>
                   <div className="search-bar">
@@ -83,34 +95,30 @@ function App() {
                     />
                     <button type="submit" className="submit-btn">
                       <SearchIcon className="searchIcon" />
-                      {/* <img src={searchIcon} className="searchIcon" /> */}
                     </button>
                   </div>
                 </form>
               </div>
               <>
-                {/* <img src={bear} className="bear" /> */}
                 <Bear className="bear" />
               </>
             </>
           ) : (
-            <>
-              <p>Results for</p>
-              <div className="searchTerm">{searchTerm}</div>
+            <div className="results">
+              <p className="rekki">Rekki</p>
+              {/* <p className="resultsFor">Results for</p>
+              <div className="searchTerm">
+                <p>
+                {translatedTerm}({searchTerm})
+                </p>
+                </div> */}
               <div className="cards">
                 {console.log(fetchedData)}
                 {renderBusinessCards()}
               </div>
-            </>
+            </div>
           )
-
-          // (
-          //   fetchedData && (
-          //     <pre>{JSON.stringify(fetchedData, null, 2)}</pre>
-          //   )
-          // )
         }
-      </div>
     </div>
   );
 }
