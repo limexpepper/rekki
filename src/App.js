@@ -15,7 +15,7 @@ function App() {
     console.log("Fetching data");
     try {
       const response = await fetch(
-        "https://octopus-app-cjzom.ondigitalocean.app/translate-and-search",
+        "http://localhost:3000/translate-and-search",
         {
           method: "POST",
           headers: {
