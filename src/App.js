@@ -15,7 +15,7 @@ function App() {
     console.log("Fetching data");
     try {
       const response = await fetch(
-        "https://www.rekki.xyz/translate-and-search",
+        "https://octopus-app-cjzom.ondigitalocean.app/translate-and-search",
         {
           method: "POST",
           headers: {
