@@ -4,7 +4,7 @@ const translateText = require('./backend/google_translate.js');
 const performTextSearch = require('./backend/google_places.js');
 
 const app = express(); 
-const PORT = 3001;
+const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,3 +26,6 @@ app.post('/translate-and-search', async (req, res) => {
       res.status(500).json({ error: 'Internal server error' });
     }
   });
+console.log("ji");
+console.log("ji");
+  //helcd
