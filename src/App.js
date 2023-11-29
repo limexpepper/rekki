@@ -15,7 +15,7 @@ function App() {
     console.log("Fetching data");
     try {
       const response = await fetch(
-        "http://localhost:3000/translate-and-search",
+        "/translate-and-search",
         {
           method: "POST",
           headers: {
