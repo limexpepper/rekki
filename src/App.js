@@ -15,7 +15,7 @@ function App() {
     console.log("Fetching data");
     try {
       const response = await fetch(
-        "http://localhost:3001/translate-and-search",
+        "https://www.rekki.xyz/translate-and-search",
         {
           method: "POST",
           headers: {
