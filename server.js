@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors'); 
-const translateText = require('./backend/google_translate.js');
-const performTextSearch = require('./backend/google_places.js');
+const translateText = require('./src/google_translate.js');
+const performTextSearch = require('./src/google_places.js');
 
 const app = express(); 
 const PORT = 3001;
