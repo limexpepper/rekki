@@ -33,7 +33,7 @@ function App() {
       }
       const data = await response.json();
       console.log("Data from backend:", data);
-      setTranslatedTerm(data.cooks);
+      //setTranslatedTerm(data.cooks);
       console.log("data from api: " + data)
       console.log("translated term: " + data.cooks);
       return data.results;
