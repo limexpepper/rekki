@@ -12,7 +12,7 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 app.use(express.static('public'));
 
-app.post('https://main--bespoke-duckanoo-11bce7.netlify.app/translate-and-search', async (req, res) => {
+app.post('/translate-and-search', async (req, res) => {
     const { searchTerm, targetLanguage } = req.body;
     const modifiedSearchTerm = searchTerm + " in Tokyo";
     console.log("modifiedSearchTerm: " + modifiedSearchTerm);
