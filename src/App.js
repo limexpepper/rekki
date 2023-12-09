@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { ReactComponent as SearchIcon } from "./search.svg";
 import { ReactComponent as Bear } from "./bear.svg";
@@ -15,7 +15,7 @@ function App() {
     console.log("Fetching data");
     try {
       const response = await fetch(
-        "/translate-and-search",
+        "/translate-and-search",//"http://localhost:3001/translate-and-search",
         {
           method: "POST",
           headers: {
