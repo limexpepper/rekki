@@ -8,7 +8,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [fetchedData, setFetchedData] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState(false); 
-  const [translatedTerm, setTranslatedTerm] = useState("oh what even");
+  // const [translatedTerm, setTranslatedTerm] = useState("oh what even");
 
 
   const fetchData = async (searchTerm) => {
