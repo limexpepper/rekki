@@ -15,7 +15,7 @@ function App() {
     console.log("Fetching data");
     try {
       const response = await fetch(
-        "https://bespoke-duckanoo-11bce7.netlify.app/translate-and-search",//"http://localhost:3001/translate-and-search",
+        "https://main--bespoke-duckanoo-11bce7.netlify.app/translate-and-search",//"http://localhost:3001/translate-and-search",
         {
           method: "POST",
           headers: {
