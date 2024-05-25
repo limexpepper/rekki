@@ -11,10 +11,16 @@ const performTextSearch = async (text) => {
     try {
       const apiUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(searchQuery)}&key=${apiKey}`;
       const response = await axios.get(apiUrl);
-  
       if (response.data.status === 'OK') {
-        const places = response.data.results; 
-        // console.log(places);
+        console.log('response OK')
+        const imgurl = `https://maps.googleapis.com/maps/api/place/photo?photoreference=${response.data.results[0].photos[0]["photo_reference"]}&key=${apiKey}`;
+        console.log('Image URL:', imgurl); 
+        const places = {
+          deets: response.data.results,
+          imageURL: imgurl
+        };
+
+        //const places = response.data.results; // console.log(places);
         return places;
       } else {
         console.error('Text search request failed:', response.data.status);

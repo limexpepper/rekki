@@ -8,14 +8,16 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [fetchedData, setFetchedData] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState(false); 
-  // const [translatedTerm, setTranslatedTerm] = useState("oh what even");
+  const [translatedTerm, setTranslatedTerm] = useState("");
+  const [imageURL, setImageURL] = useState("");
+
 
 
   const fetchData = async (searchTerm) => {
     console.log("Fetching data");
     try {
       const response = await fetch(
-        "https://main--bespoke-duckanoo-11bce7.netlify.app/translate-and-search",//"http://localhost:3001/translate-and-search",
+        "http://localhost:3001/translate-and-search",//"https://main--bespoke-duckanoo-11bce7.netlify.app/translate-and-search",
         {
           method: "POST",
           headers: {
@@ -31,12 +33,10 @@ function App() {
       if (!response.ok) {
         throw new Error("Network response was not ok.");
       }
-      const data = await response.json();
-      console.log("Data from backend:", data);
-      //setTranslatedTerm(data.cooks);
-      console.log("data from api: " + data)
-      console.log("translated term: " + data.cooks);
-      return data.results;
+      const data = await response.json();  
+      setTranslatedTerm(data.cooks); //console.log("translated term: " + translatedTerm);
+      setImageURL(data.results.imageURL)
+      return data.results.deets;
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -45,26 +45,27 @@ function App() {
   const handleSearch = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
-    console.log("Perform search for:", searchTerm);
     const data = await fetchData(searchTerm);
-    console.log("data in handle search: " + data);
     setFetchedData(data);
-    //setSearchTerm("");
+    //console.log("data from api: " + data)
   };
 
   const renderBusinessCards = () => {
     if (fetchedData && Object.keys(fetchedData).length > 0) {
       const array = Object.values(fetchedData);
-      return array.map((object) => (
-        <div className="card">
-          <Katsu className="katsu" />
-          <div className="tired">
-          <h4>{object.name}</h4>
-          <p className="lvl2">{object.rating} stars ({object.user_ratings_total})</p>
-          <p className="lvl3">{object.formatted_address}</p>
+      return array.map((object) => {
+        console.log(object);
+        return (
+          <div className="card" key={object.place_id}>
+            <img src='imageURL' className="smallImage"/>    {/*<img src={object.photos[0].photo_reference}/>*/}
+            <div className="tired">
+              <h4>{object.name}</h4>
+              <p className="lvl2">{object.rating} stars ({object.user_ratings_total})</p>
+              <p className="lvl3">{object.formatted_address}</p>
+            </div>
           </div>
-        </div>
-      ));
+        );
+      });
     } else {
       return (
         <>
@@ -78,11 +79,10 @@ function App() {
 
   return (
     <div className="App">
-        
+        <div className="rekki">Rekki</div>
         {
           !formSubmitted ? (
             <>
-            <p className="rekki">Rekki</p>
               <div className="homePage">
                 <p>Google like a Japanese, without using Japanese</p>
                 <form onSubmit={handleSearch}>
@@ -105,16 +105,9 @@ function App() {
             </>
           ) : (
             <div className="results">
-              <p className="rekki">Rekki</p>
-              {/* <p className="resultsFor">Results for</p>
-              <div className="searchTerm">
-                <p>
-                {translatedTerm}({searchTerm})
-                </p>
-                </div> */}
+                <div className="resultsFor">Results for {translatedTerm} ({searchTerm})</div>
               <div className="cards">
-                {console.log(fetchedData)}
-                {renderBusinessCards()}
+                {renderBusinessCards()}               {/* {console.log(fetchedData)} */}
               </div>
             </div>
           )
@@ -124,6 +117,3 @@ function App() {
 }
 
 export default App;
-
-//hello
-//hello
