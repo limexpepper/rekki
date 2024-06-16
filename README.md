@@ -7,6 +7,7 @@
 # Commands
 - frontend: npm start 
 - backend: node server.js
+- deploy: npm run build
 
 # Other info
 Hosted on Render
