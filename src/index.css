@@ -15,6 +15,9 @@
 :root {
   --primary-colour: #FFDBFE;
   --black: #000000;
+  --fs-xl: clamp(2rem, 6vw + 1rem, 6rem);
+  --fs-600: clamp(1rem, 1vw + 1rem, 3rem); /* 2rem */
+  --fs-400: clamp(0.8rem, 1vw, 1.5rem); /* 1rem */
 }
 
 body {
@@ -25,6 +28,12 @@ body {
   font-family: 'Roboto';
   font-weight: 400;
   text-align: left;
-  font-size: 1rem;
+  font-size: var(--fs-400);
   color: var(--black);
+  overflow-x: hidden;
+  width: 100%;
+}
+
+html, body {
+  scroll-behavior: smooth;
 }
