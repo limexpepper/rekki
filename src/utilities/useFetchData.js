@@ -11,8 +11,8 @@ import { useState } from "react";
       console.log("Inside fetchData");
       try {
         const response = await fetch(
-          // "https://rekki.onrender.com/translate-and-search",
-          "http://localhost:3001/translate-and-search",
+          "https://rekki.onrender.com/translate-and-search",
+          // "http://localhost:3001/translate-and-search",
           //"https://main--bespoke-duckanoo-11bce7.netlify.app/translate-and-search",
           {
             method: "POST",
