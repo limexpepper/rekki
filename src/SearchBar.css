@@ -1,0 +1,67 @@
+form {
+  width: 100%;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+input[type="text"] {
+  width: 100%;
+  height: clamp(
+    3rem,
+    5vw,
+    4rem
+  ); /* note: it is vw, as the height will change relative to the width of the viewport */
+  border: none;
+  border-radius: 4rem;
+  /* border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px; */
+  outline: none;
+  padding: 1rem;
+}
+
+input[type="text"]::placeholder {
+  /* color: #FF4374;  */
+  color: #b1b1b1;
+  font-size: var(--fs-400);
+}
+
+/* This will hide the placeholder text when the user starts typing */
+input[type="text"]:focus::placeholder {
+  color: transparent;
+}
+
+.submit-btn {
+  /* width: 20px;
+    height: 40px; */
+  position: relative;
+  width: 20%;
+  max-width: 60px;
+  height: clamp(3rem, 5vw, 4rem); /* same as input */
+  background-color: #ffffff;
+  color: var(--black);
+  border: none;
+  border-radius: 4rem;
+  /* border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px; */
+  padding: 8px 15px;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.searchIcon {
+  width: 50px;
+  height: 50px;
+  position: absolute; /* Position the icon absolutely within the button */
+  top: 50%; /* Center vertically */
+  left: 80%; /* Center horizontally */
+  transform: translate(
+    -80%,
+    -50%
+  ); /* must be used with top and left, to center the middle of the icon to the middle of the container*/
+  /* top: 50%; and left: 50%; positions the top-left corner of the element at the center of its parent.*/
+  /* If you only use top: 50%; and left: 50%;, the element's top-left corner will be at the center of its container.
+     /* This means the center of the element itself (the point equidistant from its edges) is not aligned with the center of the container.*/
+}

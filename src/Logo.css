@@ -1,0 +1,7 @@
+.logo {
+  padding-top: 2rem;
+  font-family: "petitcochon";
+  font-size: var(--fs-xl);
+  text-align: center;
+  background-color: #ffdbfe;
+}

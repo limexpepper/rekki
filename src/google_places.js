@@ -5,11 +5,15 @@ const envPath = path.resolve(__dirname, '.env');
 dotenv.config({ path: envPath });
 const apiKey=process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
 
-const performTextSearch = async (text) => {
+const performTextSearch = async (text, nextPageToken = null) => {
     console.log('inside performTextSearch')
     const searchQuery = text; 
     try {
       const apiUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(searchQuery)}&key=${apiKey}`;
+      if (nextPageToken) {
+        apiUrl += `&pagetoken=${nextPageToken}`;
+      }
+
       const response = await axios.get(apiUrl);
       if (response.data.status === 'OK') {
         console.log('response OK')
@@ -18,6 +22,7 @@ const performTextSearch = async (text) => {
         const places = {
           deets: response.data.results,
           imageURL: imgurl
+          nextPageToken: response.data.next_page_token // Save nextPageToken for pagination
         };
 
         //const places = response.data.results; // console.log(places);

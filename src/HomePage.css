@@ -1,0 +1,45 @@
+.homePage-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%; 
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.homePage {
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  width: 100%;
+  /* padding: 4rem; */
+  margin-top: 16vh;
+  align-items: center;
+  transition: all 1s ease-in-out;
+}
+
+.intro-text {
+  transition: opacity 0.5s ease-in-out;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  font-size: var(--fs-600);
+  text-align: center;
+  color: var(--black);
+}
+
+.katsu {
+  display:flex;
+  width: 50px;
+  height: 50px;
+  position: relative; 
+}
+
+.bear {
+  width: 1320px; /* Set the initial width */
+  max-width: 200%; /* Ensure it doesn't exceed the container width */
+  height: auto; /* Auto adjust height as page shrinks or expands */ /* height: 948px; */
+  overflow: hidden;
+  position: relative; 
+  top: 4rem;
+}

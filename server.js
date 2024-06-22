@@ -13,9 +13,14 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 app.use(express.static('public'));
 
 app.post('/translate-and-search', async (req, res) => {
+    console.log("Inside server.js /translate-and-search");
     const { searchTerm, targetLanguage } = req.body;
+    console.log("Search Term:", searchTerm);
+    console.log("Target Language:", targetLanguage);
+  
     const modifiedSearchTerm = searchTerm + " in Tokyo";
     console.log("modifiedSearchTerm: " + modifiedSearchTerm);
+    
     try {
       const translatedTerm = await translateText(modifiedSearchTerm, targetLanguage);
       const searchResults = await performTextSearch(translatedTerm);
