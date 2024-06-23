@@ -23,7 +23,7 @@ app.post('/translate-and-search', async (req, res) => {
     
     try {
       const translatedTerm = await translateText(modifiedSearchTerm, targetLanguage);
-      const searchResults = await performTextSearch(translatedTerm);
+      const searchResults = await performTextSearch(translatedTerm, nextPageToken: nextPageToken);
       res.json({ results: searchResults, cooks: translatedTerm }); 
 
     } catch (error) {

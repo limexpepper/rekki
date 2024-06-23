@@ -8,6 +8,7 @@ const apiKey=process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
 const performTextSearch = async (text, nextPageToken = null) => {
     console.log('inside performTextSearch')
     const searchQuery = text; 
+  
     try {
       const apiUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(searchQuery)}&key=${apiKey}`;
       if (nextPageToken) {
@@ -16,13 +17,13 @@ const performTextSearch = async (text, nextPageToken = null) => {
 
       const response = await axios.get(apiUrl);
       if (response.data.status === 'OK') {
-        console.log('response OK')
+        console.log('Google API response OK')
         const imgurl = `https://maps.googleapis.com/maps/api/place/photo?photoreference=${response.data.results[0].photos[0]["photo_reference"]}&key=${apiKey}`;
         console.log('Image URL:', imgurl); 
         const places = {
           deets: response.data.results,
-          imageURL: imgurl
-          nextPageToken: response.data.next_page_token // Save nextPageToken for pagination
+          imageURL: imgurl,
+          nextPageToken: response.data.pagetoken // Save nextPageToken for pagination
         };
 
         //const places = response.data.results; // console.log(places);
