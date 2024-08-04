@@ -49,7 +49,7 @@ import useFetchData from "./utilities/useFetchData";// Import the useFetchData c
 // };
 
 const SearchBar = () => {
-  const { fetchData } = useFetchData(); // Destructure fetchData from the custom hook
+  const { fetchData } = useFetchData(); // Destructure fetchData from the custom hook i.e. we only want fetchData
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
@@ -57,12 +57,13 @@ const SearchBar = () => {
     console.log("Inside handleSearch");
     e.preventDefault();
     const data = await fetchData(searchTerm);
+    
     navigate("/results", {
       state: {
         searchTerm: searchTerm,
         translatedTerm: data.translatedTerm,
-        imageURL: data.imageURL,
-        fetchedData: data.fetchedData,
+        imageURL: data.searchResults.imageURL,
+        fetchedData: data.searchResults.deets,
       },
     });
   };
